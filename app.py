@@ -1,8 +1,18 @@
 import streamlit as st
 import joblib
 import pandas as pd
+import gdown
+import joblib
+import os
 
-model = joblib.load('diamond_price_pred.pkl')
+# Download model file if not exists
+MODEL_PATH = "diamond_price_pred.pkl"
+if not os.path.exists(MODEL_PATH):
+    url = "https://drive.google.com/uc?id=16NKRNXv7rbV8Kyer4STixxgrA3-huNu9"
+    gdown.download(url, MODEL_PATH, quiet=False)
+
+# Load model
+model = joblib.load(MODEL_PATH)
 
 
 # Streamlit UI
